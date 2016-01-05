@@ -1,0 +1,2 @@
+API_USERNAME = 'william'
+API_PASSWORD = 'teste123456'
