@@ -137,5 +137,5 @@ try:
     from bandradios.local_settings import *
 except ImportError:
     pass
-API_USERNAME = 'william'
-API_PASSWORD = 'teste123456'
+
+

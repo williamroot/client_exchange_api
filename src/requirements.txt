@@ -17,3 +17,4 @@ wsgiref==0.1.2
 psycopg2
 gunicorn
 gevent
+requests
