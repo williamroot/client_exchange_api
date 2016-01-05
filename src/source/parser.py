@@ -9,7 +9,6 @@ import requests
 from django.conf import settings
 
 class Parser(object):
-
     BASE_URL = 'http://exchangeapi.williamsouza.net/api/'
 
     def get_auth(self):
@@ -22,9 +21,13 @@ class Parser(object):
         """
         Comes the list of available currencies.
         """
+        auth = self.get_auth()
         currencies = []
-        AUTH = requests.auth.HTTPBasicAuth("william", "teste123456")
-        response = requests.get(self.BASE_URL + 'currency', auth=AUTH)
+        url = '{}currency'.format(self.BASE_URL)
+        response = requests.get(
+            url,
+            auth=auth
+        )
         content = json.loads(response.content)
         for option in content:
             currency = Currency.objects.get_or_create(
