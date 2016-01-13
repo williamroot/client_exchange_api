@@ -42,8 +42,14 @@ class Parser(object):
         Returns the price of a currency (source) over another (target).
         """
         auth = self.get_auth()
-        url = self.BASE_URL.format(source.iso_code, target.iso_code)
-        content = self._get_response(self, url, auth)
+        url = self.BASE_URL.format(
+            source.iso_code,
+            target.iso_code
+        )
+        content = self._get_response(
+            url,
+            auth
+        )
         return Exchange.objects.create(
             source=source,
             target=target,
