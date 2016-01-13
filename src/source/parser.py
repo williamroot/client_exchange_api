@@ -11,7 +11,7 @@ from django.conf import settings
 class Parser(object):
     BASE_URL = 'http://exchangeapi.williamsouza.net/'
     CURRENCY_URL = '{}currency/?format=json'.format(BASE_URL)
-    EXCHANGE_URL = BASE_URL + 'exchange/{}/{}/??format=json'
+    EXCHANGE_URL = BASE_URL + 'exchange/{}/{}/?format=json'
 
     def get_auth(self):
         return requests.auth.HTTPBasicAuth(
