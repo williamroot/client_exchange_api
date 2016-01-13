@@ -2,6 +2,10 @@ from django.test import TestCase
 from api.models import Currency, Exchange
 from parser import Parser
 from decimal import Decimal
+import mock
+import requests_mock
+import requests
+import json
 
 class GetExchangeTest(TestCase):
     def setUp(self):
@@ -11,19 +15,31 @@ class GetExchangeTest(TestCase):
         self.target = Currency.objects.get_or_create(
             iso_code='BRL',
         )[0]
+        self.currencies = [self.source, self.target]
 
-    def test_get_exchange(self):
+    @mock.patch('source.parser.Parser.get_response')
+    def test_get_exchange(self, mock_response):
         parser = Parser()
-        exchange = parser.get_exchange(source=self.source, target=self.target)
+        mock_response.return_value = {'value': 4}
+        exchange = parser.get_exchange(
+            source=self.source,
+            target=self.target
+        )
         self.assertTrue(isinstance(exchange, Exchange))
-        self.assertTrue(exchange.value > Decimal(0))
+        self.assertTrue(exchange.value == 4)
 
-
-class GetCurrenciesTest(TestCase):
-    def test_get_currencies(self):
+    @mock.patch('source.parser.Parser.get_response')
+    def test_get_currencies(self, mock_response):
+        mock_response.return_value = map(lambda x:{
+            'iso_code': x.iso_code,
+            'name': x.name
+        }, self.currencies)
         parser = Parser()
         currencies = parser.get_available_currencies()
-        self.assertTrue(isinstance(currencies[0],Currency))
+        self.assertEqual(currencies, self.currencies)
+        assert mock_response.clalled
+
+
 
 
 

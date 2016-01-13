@@ -10,9 +10,11 @@ from datetime import datetime, timedelta
 
 class CurrencyList(APIView):
     def get(self, request, format=None):
-        parser = Parser()
-        objs = parser.get_available_currencies()
         objs = Currency.objects.all()
+        if not objs:
+            parser = Parser()
+            objs = parser.get_available_currencies()
+            objs = Currency.objects.all()
         serializer = CurrencySerialiazer(objs, many=True)
         return Response(serializer.data)
 

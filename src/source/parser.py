@@ -8,8 +8,11 @@ import json
 import requests
 from django.conf import settings
 
+
 class Parser(object):
     BASE_URL = 'http://exchangeapi.williamsouza.net/api/'
+    CURRENCY_URL = '{}currency'.format(BASE_URL)
+    EXCHANGE_URL = BASE_URL + 'exchange/{}/{}'
 
     def get_auth(self):
         return requests.auth.HTTPBasicAuth(
@@ -23,12 +26,10 @@ class Parser(object):
         """
         auth = self.get_auth()
         currencies = []
-        url = '{}currency'.format(self.BASE_URL)
-        response = requests.get(
-            url,
+        content = self._get_response(
+            self.CURRENCY_URL,
             auth=auth
         )
-        content = json.loads(response.content)
         for option in content:
             currency = Currency.objects.get_or_create(
                     iso_code=option['iso_code'],
@@ -42,16 +43,17 @@ class Parser(object):
         Returns the price of a currency (source) over another (target).
         """
         auth = self.get_auth()
-        url = '{}exchange/{}/{}'.format(
-            self.BASE_URL, source.iso_code, target.iso_code
-        )
-        response = requests.get(
-            url,
-            auth=auth
-        )
-        content = json.loads(response.content)
+        url = self.BASE_URL.format(source.iso_code, target.iso_code)
+        content = self._get_response(self, url, auth)
         return Exchange.objects.create(
             source=source,
             target=target,
             value=Decimal(content['value']),
         )
+
+    def _get_response(self, url, auth):
+        response = requests.get(
+            url,
+            auth=auth
+        )
+        return json.loads(response.content)

@@ -31,6 +31,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'rest_framework.authtoken',
     'exchange_api',
     'source',
     'api',
@@ -122,19 +123,12 @@ STATIC_ROOT = os.path.join(PROJECT_PATH, 'public', 'static')
 
 
 REST_FRAMEWORK = {
-    'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.IsAdminUser',),
+    'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.IsAuthenticated',),
     'PAGE_SIZE': 10
 }
 
-# chromedriver
-CHROMEDRIVER_LOCATION = os.path.join(
-    PROJECT_PATH,
-    'chromedriver',
-    'chromedriver'
-)
-
 try:
-    from bandradios.local_settings import *
+    from local_settings import *
 except ImportError:
     pass
 
