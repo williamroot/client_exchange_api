@@ -15,7 +15,7 @@ urlpatterns = [
         name='exchange_list'
     ),
      url(
-        r'^exchange/(?P<source>[a-z]+)/(?P<target>[a-z]+)/$',
+        r'^exchange/(?P<source>.+)/(?P<target>.+)/$',
         views.ExchangeDetail.as_view(),
         name='exchange_detail'
     )
