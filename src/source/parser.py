@@ -9,7 +9,7 @@ import requests
 from django.conf import settings
 
 class Parser(object):
-    BASE_URL = 'http://exchangeapi.williamsouza.net/api/'
+    BASE_URL = 'http://exchangeapi.williamsouza.net/'
     CURRENCY_URL = '{}currency'.format(BASE_URL)
     EXCHANGE_URL = BASE_URL + 'exchange/{}/{}'
 
