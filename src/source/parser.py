@@ -10,8 +10,8 @@ from django.conf import settings
 
 class Parser(object):
     BASE_URL = 'http://exchangeapi.williamsouza.net/'
-    CURRENCY_URL = '{}currency/?format=json'.format(BASE_URL)
-    EXCHANGE_URL = BASE_URL + 'exchange/{}/{}/?format=json'
+    CURRENCY_URL = '{}currency/'.format(BASE_URL)
+    EXCHANGE_URL = BASE_URL + 'exchange/{}/{}/'
 
     def get_auth(self):
         return requests.auth.HTTPBasicAuth(
@@ -42,7 +42,7 @@ class Parser(object):
         Returns the price of a currency (source) over another (target).
         """
         auth = self.get_auth()
-        url = self.BASE_URL.format(
+        url = self.EXCHANGE_URL.format(
             source.iso_code,
             target.iso_code
         )
