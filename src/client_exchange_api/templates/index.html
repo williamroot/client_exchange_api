@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Exchange API</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="/static/client_exchange_api/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="/static/client_exchange_api/css/one-page-wonder.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="#">Doc</a>
+                    </li>
+                    <li>
+                        <a href="/login/?next=/">Login</a>
+                    </li>
+                    <li>
+                        <a href="https://github.com/williamroot/client_exchange_api" target="_blank">Code</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Full Width Image Header -->
+    <header class="header">
+        <div class="headline">
+            <div class="container">
+                <h1>Exchange API</h1>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Content -->
+    <div class="container">
+
+        <hr class="featurette-divider">
+
+        <!-- First Featurette -->
+        <div class="featurette" id="about">
+            <h2 class="featurette-heading">API Reference
+            </h2>
+             <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th>Method</th>
+                    <th>Endpoint</th>
+                    <th>Returns</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>GET</td>
+                    <td><a href="/currency">/currency</a></td>
+                    <td>Availiable currency list</td>
+                  </tr>
+                  <tr>
+                    <td>GET</td>
+                    <td><a href="/currency/usd">/currency/{iso_code}</a></td>
+                    <td>Currency Details</td>
+                  </tr>
+                  <tr>
+                  <td>GET</td>
+                    <td><a href="/exchange/">/exchange/</a></td>
+                    <td>Exchange List</td>
+                  </tr>
+                  <tr>
+                    <td>GET</td>
+                    <td><a href="/exchange/usd/brl">/exchange/{source_iso_code>}/{target_iso_code}</a></td>
+                    <td>Exchange Details</td>
+                  </tr>
+                </tbody>
+              </table>
+        </div>
+        <hr class="featurette-divider">
+        <!-- Second Featurette -->
+        <div class="featurette" id="services">
+            <h2 class="featurette-heading">How does it work?
+            </h2>
+            <p class="lead">
+            Using <a href="http://exchangeapi.williamsouza.net">Exchange API</a>, we provide a REST API.
+            note: the values are updated hourly.
+            </p>
+        </div>
+
+        <hr class="featurette-divider">
+
+        <!-- Footer -->
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>developed by: <a href="http://williamsouza.net">William .A Souza</a></p>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+    <!-- /.container -->
+
+    <!-- jQuery -->
+    <script src="/static/client_exchange_api/js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="/static/client_exchange_api/js/bootstrap.min.js"></script>
+
+</body>
+
+</html>

@@ -17,7 +17,7 @@ class GetExchangeTest(TestCase):
         )[0]
         self.currencies = [self.source, self.target]
 
-    @mock.patch('source.parser.Parser.get_response')
+    @mock.patch('source.parser.Parser._get_response')
     def test_get_exchange(self, mock_response):
         parser = Parser()
         mock_response.return_value = {'value': 4}
@@ -28,7 +28,7 @@ class GetExchangeTest(TestCase):
         self.assertTrue(isinstance(exchange, Exchange))
         self.assertTrue(exchange.value == 4)
 
-    @mock.patch('source.parser.Parser.get_response')
+    @mock.patch('source.parser.Parser._get_response')
     def test_get_currencies(self, mock_response):
         mock_response.return_value = map(lambda x:{
             'iso_code': x.iso_code,

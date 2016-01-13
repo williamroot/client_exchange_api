@@ -8,7 +8,6 @@ import json
 import requests
 from django.conf import settings
 
-
 class Parser(object):
     BASE_URL = 'http://exchangeapi.williamsouza.net/api/'
     CURRENCY_URL = '{}currency'.format(BASE_URL)
